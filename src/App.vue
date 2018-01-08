@@ -32,7 +32,7 @@ export default {
 
 <style lang="less" scoped>
 #app {
-    margin: 20px auto;
+    margin: 80px auto;
     width: 800px;
     height: 600px;
 
