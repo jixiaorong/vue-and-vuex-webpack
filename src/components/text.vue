@@ -13,6 +13,7 @@ export default {
       content: ""
     };
   },
+
   methods: {
     clearInfo: function() {// 发送数据
       this.sendMessage(this.content);
@@ -26,6 +27,7 @@ export default {
     },
     sendInfo: function() {// 鼠标点击发送数据
       this.clearInfo();
+      // this.showTime(this);
     }
   }
 };

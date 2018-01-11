@@ -11,9 +11,13 @@ export default {
                 return result;
             },
             // 当前会话index
-            currentId: ({ currentSessionId }) => currentSessionId
+            currentId: ({ currentSessionId }) => currentSessionId,
+            isRead:({sessions})=>sessions.unRead,
+            count:({sessions})=>sessions.count,
         }
-    }
+    },
+
+ 
 };
 </script>
 
@@ -23,9 +27,8 @@ export default {
         <li v-for="item in sessions" :class="{ active: item.id === currentId }" @click="selectSession(item.id)">
             <a href="javascript:;">
                 <img class="avatar"  width="40" height="40" :alt="item.user.name" :src="item.user.img">
-                <span v-show="false">1</span>
+                <span v-if="item.unRead">{{item.count}}</span>
             </a>
-            <!-- <p class="name">{{item.user.name}}</p> -->
             <p  class="name">
                 <span>{{item.user.name}}</span> <br>
                 <span>{{item.user.department}}</span>
@@ -55,7 +58,7 @@ export default {
             span{
                 position: absolute;
                 top:-9px;
-                left:23px;
+                left:34px;
                 display: block;
                 padding:0px 6px;
                 border-radius:20px;

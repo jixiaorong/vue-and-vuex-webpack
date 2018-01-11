@@ -5,9 +5,9 @@ import Card from 'components/card';
 import List from 'components/list';
 import Text from 'components/text';
 import Message from 'components/message';
-
+import News from 'components/newMessage'
 export default {
-    components: { Card, List, Text, Message },
+    components: { Card, List, Text, Message,News },
     vuex: {
         actions: actions
     },
@@ -19,6 +19,9 @@ export default {
 
 <template>
 <div id="app">
+    <div class="news">
+        <News></News>
+    </div>
     <div class="sidebar">
         <card></card>
         <list></list>
@@ -35,8 +38,8 @@ export default {
     margin: 80px auto;
     width: 800px;
     height: 600px;
-
-    overflow: hidden;
+    position: relative;
+    // overflow: hidden;
     border-radius: 3px;
 
     .sidebar, .main {
@@ -61,6 +64,12 @@ export default {
     }
     .message {
         height: ~'calc(100% - 160px)';
+    }
+    .news{
+        position: absolute;
+        top:0;
+        left:-80px;
+        z-index: 66;
     }
 }
 </style>

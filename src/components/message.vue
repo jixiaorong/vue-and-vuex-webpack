@@ -1,8 +1,11 @@
 <script>
+import {actions} from "../store"
 export default {
   vuex: {
+    actions: actions,
     getters: {
       user: ({ user }) => user,
+      // isShow:({isShow})=>isShow,
       session: ({ sessions, currentSessionId }) =>
         sessions.find(session => session.id === currentSessionId)
     }
@@ -11,9 +14,12 @@ export default {
     // 将日期过滤为 hour:minutes
     time(date) {
       if (typeof date === "string") {
-        date = new Date(date);
+        date = new Date(date)
       }
-      return date.getHours() + ":" + date.getMinutes();
+    //  处理显示的时间
+      let hour=date.getHours()>9?date.getHours():"0"+date.getHours();
+      let seconds=date.getMinutes()>9?date.getMinutes():"0"+date.getMinutes();
+      return hour + ":" + seconds;
     }
   },
   directives: {
@@ -24,7 +30,7 @@ export default {
       });
     }
   }
-};
+}
 </script>
 
 <template>
@@ -33,7 +39,7 @@ export default {
         <p class="messageTitle">{{session.user.project}}</p>
         <ul v-if="session">
             <li v-for="item in session.messages">
-                <p class="time">
+                <p class="time" v-if="item.isShow">
                     <span>{{ item.date | time }}</span>
                 </p>
                 <div class="main" :class="{ self: item.self }">
@@ -117,17 +123,17 @@ body {
     }
   }
 }
-.messageTitle{
-    height: 52px;
-    width: 100%;
-    line-height: 52px;
-    text-align: center;
-    position: absolute;
-    z-index: 7;
-    top:0px;
-    left: 0px;
-    background-color: #eee;
-    margin: 0px;
-    border-bottom:1px solid #ddd;
+.messageTitle {
+  height: 52px;
+  width: 100%;
+  line-height: 52px;
+  text-align: center;
+  position: absolute;
+  z-index: 7;
+  top: 0px;
+  left: 0px;
+  background-color: #eee;
+  margin: 0px;
+  border-bottom: 1px solid #ddd;
 }
 </style>

@@ -10,9 +10,9 @@ export default {
     }
   },
   methods: {
-    onKeyup(e) {
-      this.search(e.target.value);
-    }
+    // onKeyup(e) {
+    //   this.search(e.target.value);
+    // }  
   }
 };
 </script>

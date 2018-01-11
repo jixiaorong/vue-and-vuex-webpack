@@ -8,6 +8,7 @@ import common from './common.js'
 
 Vue.config.devtools = true;
 
+
 new Vue({
     el: 'body',
     components: { App },
